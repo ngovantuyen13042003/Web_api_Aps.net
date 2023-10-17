@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookStore.Migrations
 {
     /// <inheritdoc />
-    public partial class updateTable : Migration
+    public partial class InitalDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace BookStore.Migrations
                 name: "book",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),
@@ -33,7 +34,8 @@ namespace BookStore.Migrations
                 name: "cart",
                 columns: table => new
                 {
-                    IdCart = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdCart = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BookName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
@@ -48,7 +50,8 @@ namespace BookStore.Migrations
                 name: "category",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -60,7 +63,8 @@ namespace BookStore.Migrations
                 name: "customer",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -77,7 +81,8 @@ namespace BookStore.Migrations
                 name: "employee",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -89,7 +94,8 @@ namespace BookStore.Migrations
                 name: "images",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NameImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TypeImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataImage = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
@@ -104,7 +110,8 @@ namespace BookStore.Migrations
                 name: "role",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -116,8 +123,8 @@ namespace BookStore.Migrations
                 name: "cart_book",
                 columns: table => new
                 {
-                    cartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    bookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    cartId = table.Column<int>(type: "int", nullable: false),
+                    bookId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,8 +147,8 @@ namespace BookStore.Migrations
                 name: "book_category",
                 columns: table => new
                 {
-                    bookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    categoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    bookId = table.Column<int>(type: "int", nullable: false),
+                    categoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,8 +171,8 @@ namespace BookStore.Migrations
                 name: "customer_book",
                 columns: table => new
                 {
-                    bookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    customerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    bookId = table.Column<int>(type: "int", nullable: false),
+                    customerId = table.Column<int>(type: "int", nullable: false),
                     quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -189,11 +196,12 @@ namespace BookStore.Migrations
                 name: "account",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    customerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    employeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    customerId = table.Column<int>(type: "int", nullable: false),
+                    employeeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,8 +224,8 @@ namespace BookStore.Migrations
                 name: "book_images",
                 columns: table => new
                 {
-                    bookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    imageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    bookId = table.Column<int>(type: "int", nullable: false),
+                    imageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,8 +248,8 @@ namespace BookStore.Migrations
                 name: "account_role",
                 columns: table => new
                 {
-                    roleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    accountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    roleId = table.Column<int>(type: "int", nullable: false),
+                    accountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

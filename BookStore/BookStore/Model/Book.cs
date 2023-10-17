@@ -8,7 +8,7 @@ namespace BookStore.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid id { get; set; }
+        public int id { get; set; }
         public String  name{ get; set; }
         public String  description { get; set; }
         public double  price { get; set; }

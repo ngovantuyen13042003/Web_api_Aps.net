@@ -7,7 +7,7 @@ namespace BookStore.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid id { get; set; }
+        public int id { get; set; }
         public String name { get; set; }
         public ICollection<Book_Category> book_Categories { get; set; }
         public Category()

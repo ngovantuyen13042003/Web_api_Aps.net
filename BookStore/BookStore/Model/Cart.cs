@@ -9,7 +9,7 @@ namespace BookStore.Model
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IdCart { get; set; }
+        public int IdCart { get; set; }
         public string BookName { get; set; }
         public string Author { get; set; }
         public double Price { get; set; }

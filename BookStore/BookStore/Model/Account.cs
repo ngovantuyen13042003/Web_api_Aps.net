@@ -7,13 +7,13 @@ namespace BookStore.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid id { get; set; }
+        public int id { get; set; }
         public String username { get; set; }
         public String password { get; set; }
 
-        public Guid customerId { get; set; }
+        public int customerId { get; set; }
         public Customer customer { get; set; }
-        public Guid employeeId { get; set; }
+        public int employeeId { get; set; }
         public Employee employee { get; set; }
 
         public ICollection<Account_Role> account_Roles { get; set; }

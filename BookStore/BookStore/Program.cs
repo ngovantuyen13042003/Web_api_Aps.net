@@ -1,4 +1,6 @@
 using BookStore.Data;
+using BookStore.repository;
+using BookStore.repository.repositoryImpl;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore
@@ -20,6 +22,8 @@ namespace BookStore
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddScoped<CategoryRepository, CategoryReporitoryImpl>();
 
 
             var app = builder.Build();

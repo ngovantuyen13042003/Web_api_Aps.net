@@ -7,7 +7,7 @@ namespace BookStore.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid id { get; set; }
+        public int id { get; set; }
         public String name { get; set; }
         public ICollection<Account_Role> account_Roles { get; set; }
         public Role()

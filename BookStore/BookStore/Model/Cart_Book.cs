@@ -4,10 +4,10 @@ namespace BookStore.Model
 {
     public class Cart_Book
     {
-        public Guid cartId { get; set; }
+        public int cartId { get; set; }
         [ForeignKey("cartId")]
         public Cart cart { get; set; }
-        public Guid bookId { get; set; }
+        public int bookId { get; set; }
         [ForeignKey("bookId")]
         public Book book { get; set; }
     }

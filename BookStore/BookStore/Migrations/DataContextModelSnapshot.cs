@@ -24,15 +24,17 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Account", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("customerId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<Guid>("employeeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("customerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("employeeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("password")
                         .IsRequired()
@@ -53,11 +55,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Account_Role", b =>
                 {
-                    b.Property<Guid>("roleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("roleId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("accountId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("accountId")
+                        .HasColumnType("int");
 
                     b.HasKey("roleId", "accountId");
 
@@ -68,9 +70,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Book", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("amount")
                         .HasColumnType("int");
@@ -105,11 +109,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Book_Category", b =>
                 {
-                    b.Property<Guid>("bookId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("bookId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("categoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("categoryId")
+                        .HasColumnType("int");
 
                     b.HasKey("bookId", "categoryId");
 
@@ -120,11 +124,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Book_Images", b =>
                 {
-                    b.Property<Guid>("imageId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("imageId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("bookId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("bookId")
+                        .HasColumnType("int");
 
                     b.HasKey("imageId", "bookId");
 
@@ -135,9 +139,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Cart", b =>
                 {
-                    b.Property<Guid>("IdCart")
+                    b.Property<int>("IdCart")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCart"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -160,11 +166,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Cart_Book", b =>
                 {
-                    b.Property<Guid>("bookId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("bookId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("cartId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("cartId")
+                        .HasColumnType("int");
 
                     b.HasKey("bookId", "cartId");
 
@@ -175,9 +181,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Category", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -190,9 +198,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -224,11 +234,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Customer_Book", b =>
                 {
-                    b.Property<Guid>("bookId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("bookId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("customerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("customerId")
+                        .HasColumnType("int");
 
                     b.Property<int>("quantity")
                         .HasColumnType("int");
@@ -242,9 +252,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Employee", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -257,9 +269,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Images", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BookId")
                         .HasColumnType("int");
@@ -283,9 +297,11 @@ namespace BookStore.Migrations
 
             modelBuilder.Entity("BookStore.Model.Role", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("name")
                         .IsRequired()
