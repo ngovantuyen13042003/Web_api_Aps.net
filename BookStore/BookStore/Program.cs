@@ -23,10 +23,22 @@ namespace BookStore
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    });
+            });
+           
+
+
             builder.Services.AddScoped<CategoryRepository, CategoryReporitoryImpl>();
 
 
             var app = builder.Build();
+            app.UseCors("AllowAll");
 
             if (args.Length == 1 && args[0].ToLower() == "seeddata")
                 SeedData(app);
@@ -41,6 +53,7 @@ namespace BookStore
                     service.SeedDataContext();
                 }
             }
+
 
 
             // Configure the HTTP request pipeline.
