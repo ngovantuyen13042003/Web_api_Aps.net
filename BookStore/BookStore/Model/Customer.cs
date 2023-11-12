@@ -14,11 +14,9 @@ namespace BookStore.Model
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public ICollection<Customer_Book> customer_Books { get; set; }
         public ICollection<Account> accounts { get; set; }
         public Customer()
         {
-            customer_Books = new List<Customer_Book>();
             accounts = new List<Account>();
         }
 

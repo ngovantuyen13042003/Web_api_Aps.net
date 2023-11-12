@@ -9,10 +9,7 @@ namespace BookStore.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public String name { get; set; }
-        public ICollection<Book_Category> book_Categories { get; set; }
-        public Category()
-        {
-            book_Categories = new List<Book_Category>();
-        }
+        public ICollection<Book> books { get; set; }
+      
     }
 }

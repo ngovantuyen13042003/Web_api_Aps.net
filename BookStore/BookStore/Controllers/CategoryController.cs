@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CategoryController : ControllerBase
     {
         private readonly CategoryRepository categoryRepository;
@@ -13,7 +15,7 @@ namespace BookStore.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        [HttpGet]
+        [HttpGet("/categories")]
         public IActionResult getAllCategory()
         {
             try
@@ -26,7 +28,7 @@ namespace BookStore.Controllers
             }
 
         }
-        [HttpGet("{id}")]
+        [HttpGet("/{id}")]
         public IActionResult getById(int id)
         {
             try
@@ -39,7 +41,7 @@ namespace BookStore.Controllers
             }
 
         }
-        [HttpGet("{id}")]
+        [HttpPut("/update/{id}")]
         public IActionResult Update(int id, CategoryDTO categoryDTO)
         {
             if(id != categoryDTO.id)
@@ -57,7 +59,7 @@ namespace BookStore.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/delete/{id}")]
         public IActionResult delete(int id)
         {
             try
@@ -71,7 +73,7 @@ namespace BookStore.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("/add-category")]
         public IActionResult add(CategoryModel categoryModel)
         {
             try
