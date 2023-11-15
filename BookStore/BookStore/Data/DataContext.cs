@@ -13,7 +13,6 @@ namespace BookStore.Data
         public DbSet<Book> books { get; set; }
         public DbSet<Customer> customers { get; set; }
         public DbSet<Cart> carts { get; set; }
-        public DbSet<Account> account { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -54,18 +53,7 @@ namespace BookStore.Data
                .HasForeignKey(c => c.IdCart);
             });
 
-           
-
-            // Account
-            modelBuilder.Entity<Account>(entity =>
-            {
-                entity.ToTable("account");
-                entity.HasKey(a =>new { a.id});
-
-                entity.HasOne(a => a.customer)
-                    .WithMany(a => a.accounts)
-                    .HasForeignKey(a => a.customerId);
-            });
+   
         }
     }
 }
