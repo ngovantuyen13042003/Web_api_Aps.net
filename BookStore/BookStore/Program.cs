@@ -31,10 +31,12 @@ namespace BookStore
                         builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                     });
             });
-           
+
 
 
             builder.Services.AddScoped<CategoryRepository, CategoryReporitoryImpl>();
+            builder.Services.AddScoped<BookRepository, BookRepositoryImpl>();
+            builder.Services.AddScoped<CustomerRepository, CustomerRepositoryImpl>();
 
 
             var app = builder.Build();

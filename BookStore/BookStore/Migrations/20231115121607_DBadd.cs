@@ -5,18 +5,37 @@
 namespace BookStore.Migrations
 {
     /// <inheritdoc />
-    public partial class initaldb : Migration
+    public partial class DBadd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "cart",
+                columns: table => new
+                {
+                    IdCart = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    bookId = table.Column<int>(type: "int", nullable: false),
+                    customerId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cart", x => x.IdCart);
+                });
+
             migrationBuilder.CreateTable(
                 name: "category",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,10 +49,7 @@ namespace BookStore.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,9 +66,7 @@ namespace BookStore.Migrations
                     description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),
                     amount = table.Column<int>(type: "int", nullable: false),
-                    language = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    publisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     categoryId = table.Column<int>(type: "int", nullable: false),
                     image = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -67,28 +81,6 @@ namespace BookStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "cart",
-                columns: table => new
-                {
-                    IdCart = table.Column<int>(type: "int", nullable: false),
-                    BookName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    bookId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_cart", x => x.IdCart);
-                    table.ForeignKey(
-                        name: "FK_cart_book_IdCart",
-                        column: x => x.IdCart,
-                        principalTable: "book",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_book_categoryId",
                 table: "book",
@@ -99,13 +91,13 @@ namespace BookStore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "book");
+
+            migrationBuilder.DropTable(
                 name: "cart");
 
             migrationBuilder.DropTable(
                 name: "customer");
-
-            migrationBuilder.DropTable(
-                name: "book");
 
             migrationBuilder.DropTable(
                 name: "category");

@@ -1,7 +1,7 @@
 ﻿namespace BookStore.repository
 {
-    public interface AccountRepository
+    public interface CartRepository
     {
-        
+
     }
 }

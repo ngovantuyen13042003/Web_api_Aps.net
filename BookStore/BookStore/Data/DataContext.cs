@@ -47,10 +47,6 @@ namespace BookStore.Data
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.HasKey(c => c.IdCart);
-
-                entity.HasOne(c => c.book)
-               .WithMany(b => b.carts)
-               .HasForeignKey(c => c.IdCart);
             });
 
    
