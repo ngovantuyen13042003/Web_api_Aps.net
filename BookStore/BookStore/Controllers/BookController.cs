@@ -42,7 +42,7 @@
                 }
             }
 
-            [HttpGet("/find-books-by-categoryId")]
+            [HttpGet("/find-books-by-categoryId/{cateId}")]
             public IActionResult findBooksBycate(int cateId)
             {
                 try
@@ -58,11 +58,11 @@
 
 
             [HttpDelete("/deleteBook/{id}")]
-            public IActionResult deleteById(int bookId)
+            public IActionResult deleteById(int id)
             {
                 try
                 {
-                    this.bookRepository.delete(bookId);
+                    this.bookRepository.delete(id);
                     return Ok();
                 }
                 catch (Exception ex)
