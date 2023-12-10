@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231115091916_inital-db")]
-    partial class initaldb
+    [Migration("20231115121607_DBadd")]
+    partial class DBadd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,20 +50,12 @@ namespace BookStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("price")
                         .HasColumnType("float");
-
-                    b.Property<string>("publisher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -77,6 +69,8 @@ namespace BookStore.Migrations
                     b.Property<int>("IdCart")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCart"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -95,6 +89,10 @@ namespace BookStore.Migrations
                     b.Property<int>("bookId")
                         .HasColumnType("int");
 
+                    b.Property<string>("customerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("IdCart");
 
                     b.ToTable("cart");
@@ -107,6 +105,10 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -124,18 +126,6 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("password")
                         .IsRequired()
@@ -159,22 +149,6 @@ namespace BookStore.Migrations
                         .IsRequired();
 
                     b.Navigation("category");
-                });
-
-            modelBuilder.Entity("BookStore.Model.Cart", b =>
-                {
-                    b.HasOne("BookStore.Model.Book", "book")
-                        .WithMany("carts")
-                        .HasForeignKey("IdCart")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("book");
-                });
-
-            modelBuilder.Entity("BookStore.Model.Book", b =>
-                {
-                    b.Navigation("carts");
                 });
 
             modelBuilder.Entity("BookStore.Model.Category", b =>

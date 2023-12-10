@@ -41,7 +41,7 @@ namespace BookStore.Controllers
             }
 
         }
-        [HttpPut("/update/{id}")]
+        [HttpPut("/updateCate/{id}")]
         public IActionResult Update(int id, CategoryDTO categoryDTO)
         {
             if(id != categoryDTO.id)
@@ -59,7 +59,7 @@ namespace BookStore.Controllers
             }
         }
 
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("/deleteCate/{id}")]
         public IActionResult delete(int id)
         {
             try

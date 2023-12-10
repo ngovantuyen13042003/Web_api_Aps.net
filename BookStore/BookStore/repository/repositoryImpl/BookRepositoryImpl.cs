@@ -8,74 +8,111 @@ namespace BookStore.repository.repositoryImpl
     {
 
         private readonly DataContext context;
+        private readonly CategoryRepository categoryRepository;
+
         public BookRepositoryImpl(DataContext _context)
         {
             this.context = _context;
         }
 
-        public BookDTO add(BookDTO bookDTO)
+        public Book add(BookDTO book)
         {
-            Book book = new Book();
-            book.author = bookDTO.author;
-            book.description = bookDTO.description;
-            book.name = bookDTO.name;
-            book.price = bookDTO.price;
-            book.publisher = bookDTO.publisher;
-            book.amount = bookDTO.amount;
-            book.language = bookDTO.language;
+            
+            
+            Book b = new Book();
+            b.author = book.author;
+            b.description = book.description;
+            b.name = book.name;
+            b.price = book.price;
+            b.amount = book.amount;
+            b.categoryId = book.categoryId;
+            b.image = book.image;
+            b.category = this.context.categories.FirstOrDefault(c => c.id == book.categoryId);
 
 
-            return null;
+
+            this.context.books.Add(b);
+            this.context.SaveChanges();
+            return b;
         }
 
-        public void delete(int id)
+
+
+        public List<Book> findByCategory(int categoryId)
         {
-            throw new NotImplementedException();
+            return  this.context.books.Where(b => b.categoryId == categoryId).ToList();
         }
 
-        public List<BookDTO> GetAll()
+        public List<Book> GetAll()
         {
-            throw new NotImplementedException();
+            var bookList = this.context.books.Select(b => new Book
+            {
+                id = b.id,
+                name = b.name,
+                price = b.price,
+                amount = b.amount,
+                categoryId = b.categoryId,
+                description = b.description,
+                author = b.author,
+                image = b.image,
+                category = b.category
+                
+
+        });
+            
+
+            return bookList.ToList();
         }
 
-        public BookDTO getById(int id)
+        public Book getById(int id)
         {
-            throw new NotImplementedException();
+            var book = (Book)this.context.books.FirstOrDefault(b => b.id == id);
+
+            if (book != null)
+            {
+                return book;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public void update(BookDTO book)
-        {
-            throw new NotImplementedException();
-        }
 
-        BookDTO BookRepository.add(BookDTO book)
-        {
-            throw new NotImplementedException();
-        }
 
         void BookRepository.delete(int id)
         {
-            throw new NotImplementedException();
+            var book = this.context.books.SingleOrDefault(b => b.id == id);
+            if(book != null)
+            {
+                this.context.Remove(book);
+                this.context.SaveChanges();
+            }
+            
+
         }
 
-        List<BookDTO> BookRepository.GetAll()
+
+        List<Book> BookRepository.search(string search)
         {
             throw new NotImplementedException();
         }
 
-        BookDTO BookRepository.getById(int id)
+        void BookRepository.update(int id, BookDTO bookDTO)
         {
-            throw new NotImplementedException();
-        }
-
-        List<BookDTO> BookRepository.search(string search)
-        {
-            throw new NotImplementedException();
-        }
-
-        void BookRepository.update(BookDTO book)
-        {
-            throw new NotImplementedException();
+            var book = this.context.books.SingleOrDefault(b => b.id == id);
+            if(book != null)
+            {
+                book.name = bookDTO.name;
+                book.author = bookDTO.author;
+                book.price = bookDTO.price;
+                book.description = bookDTO.description;
+                book.image = bookDTO.image;
+                book.amount = bookDTO.amount;
+                book.categoryId = bookDTO.categoryId;
+                this.context.books.Update(book);
+                this.context.SaveChanges();
+            }
         }
     }
 }

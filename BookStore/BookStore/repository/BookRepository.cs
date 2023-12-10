@@ -5,12 +5,14 @@ namespace BookStore.repository
 {
     public interface BookRepository
     {
-        List<BookDTO> GetAll();
+        List<Book> GetAll();
 
-        List<BookDTO> search(String search);
-        BookDTO getById(int id);
-        BookDTO add(BookDTO book);
-        void update(BookDTO book);
+        List<Book> search(String search);
+        Book getById(int id);
+        Book add(BookDTO book);
+        void update(int id, BookDTO book);
         void delete(int id);
+
+        List<Book> findByCategory(int categoryId);
     }
 }

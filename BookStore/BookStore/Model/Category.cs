@@ -9,6 +9,7 @@ namespace BookStore.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public String name { get; set; }
+        public String image { get; set; }
         public ICollection<Book> books { get; set; }
       
     }

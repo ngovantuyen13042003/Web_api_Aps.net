@@ -23,9 +23,7 @@ namespace BookStore
                         description = "Sách thánh tăng sát thương phép",
                         price = 2000,
                         amount = 100,
-                        language = "Việt Nam",
                         author = "Liên Quân Mobile",
-                        publisher = "Garena",
                         category = new Category()
                         {
                             name = "Sách phép"

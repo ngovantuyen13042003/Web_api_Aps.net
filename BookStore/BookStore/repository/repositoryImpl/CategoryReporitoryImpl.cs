@@ -17,12 +17,14 @@ namespace BookStore.repository.repositoryImpl
         {
             Category category = new Category();
             category.name = categoryModel.name;
+            category.image = categoryModel.image;
             this.context.Add(category);
             this.context.SaveChanges();
             return new CategoryDTO()
             {
                 id = category.id,
-                name = category.name
+                name = category.name,
+                image = category.image
             };
         }
 
@@ -41,7 +43,8 @@ namespace BookStore.repository.repositoryImpl
             var cates = this.context.categories.Select(c => new CategoryDTO
             {
                 id = c.id,
-                name = c.name
+                name = c.name,
+                image = c.image
             });
 
             return cates.ToList();

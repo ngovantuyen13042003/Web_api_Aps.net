@@ -30,7 +30,7 @@ namespace BookStore.Controllers
             }
         }
 
-        [HttpGet("/login")]
+        [HttpPost("/login")]
         public IActionResult login(String username, String password)
         {
             try
