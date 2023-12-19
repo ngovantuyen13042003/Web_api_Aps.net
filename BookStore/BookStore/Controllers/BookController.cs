@@ -98,5 +98,19 @@
                     return BadRequest();
                 }
             }
+
+
+            [HttpGet("/pagination")]
+            public IActionResult pagination(int page, int pagesize)
+            {
+            try
+            {
+                var books = this.bookRepository.pagination(page, pagesize);
+                return Ok(books);
+            }catch
+            {
+                return BadRequest();
+            }
+            }
         }
     }
