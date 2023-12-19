@@ -14,5 +14,9 @@ namespace BookStore.repository
         void delete(int id);
 
         List<Book> findByCategory(int categoryId);
+
+
+        List<Book> pagination(int page, int pagesize);
+
     }
 }

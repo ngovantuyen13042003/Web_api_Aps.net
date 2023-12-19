@@ -78,7 +78,11 @@ namespace BookStore.repository.repositoryImpl
             }
         }
 
-
+        public List<Book> pagination(int page, int pagesize)
+        {
+            var book = this.context.books.OrderBy(b => b.id).Skip((page - 1) * pagesize).Take(pagesize);
+            return book.ToList();
+        }
 
         void BookRepository.delete(int id)
         {
