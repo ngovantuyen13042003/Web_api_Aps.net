@@ -6,7 +6,6 @@ namespace BookStore.Model
     [Table("cart")]
     public class Cart
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCart { get; set; }
@@ -16,5 +15,7 @@ namespace BookStore.Model
         public int Amount { get; set; }
         public int bookId { get; set; }
         public String customerId { get; set; }
+        public Double totalPrice { get; set; }
+        public int totalQuantity { get; set; }
     }
 }
