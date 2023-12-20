@@ -50,25 +50,11 @@ namespace BookStore.Controllers
             {
                 this.cartRepository.delete(id);
                 return Ok();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest();
             }
         }
-
-        [HttpPut("/update-cart")]
-        public IActionResult Update(int id)
-        {
-            try
-            {
-                this.cartRepository.update(id);
-                return Ok();
-            }catch
-            {
-                return BadRequest();
-            }
-        }
-
-
     }
 }

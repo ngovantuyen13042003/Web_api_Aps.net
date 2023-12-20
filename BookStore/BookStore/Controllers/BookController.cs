@@ -33,8 +33,8 @@
             {
                 try
                 {
-                    var list = this.bookRepository.add(bookDTO);
-                    return StatusCode(StatusCodes.Status201Created);
+                    var book = this.bookRepository.add(bookDTO);
+                    return Ok(book);
                 }
                 catch
                 {

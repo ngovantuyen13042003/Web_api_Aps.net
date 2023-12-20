@@ -8,5 +8,7 @@
         public int Amount { get; set; }
         public int bookId { get; set; }
         public String customerId { get; set; }
+        public Double totalPrice { get; set; }
+        public int totalQuantity { get; set; }
     }
 }

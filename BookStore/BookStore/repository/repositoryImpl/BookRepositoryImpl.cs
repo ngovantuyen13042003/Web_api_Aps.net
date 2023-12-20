@@ -17,8 +17,6 @@ namespace BookStore.repository.repositoryImpl
 
         public Book add(BookDTO book)
         {
-            
-            
             Book b = new Book();
             b.author = book.author;
             b.description = book.description;
@@ -26,10 +24,8 @@ namespace BookStore.repository.repositoryImpl
             b.price = book.price;
             b.amount = book.amount;
             b.categoryId = book.categoryId;
-            b.image = book.image;
+            b.image = "https://cuongquach.com/wp-content/uploads/2019/12/lap-trinh-huong-doi-tuong-voi-java.jpg";
             b.category = this.context.categories.FirstOrDefault(c => c.id == book.categoryId);
-
-
 
             this.context.books.Add(b);
             this.context.SaveChanges();
@@ -56,11 +52,7 @@ namespace BookStore.repository.repositoryImpl
                 author = b.author,
                 image = b.image,
                 category = b.category
-                
-
         });
-            
-
             return bookList.ToList();
         }
 
@@ -92,8 +84,6 @@ namespace BookStore.repository.repositoryImpl
                 this.context.Remove(book);
                 this.context.SaveChanges();
             }
-            
-
         }
 
 
