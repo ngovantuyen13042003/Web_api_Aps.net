@@ -36,6 +36,7 @@ namespace BookStore
 
             builder.Services.AddScoped<CategoryRepository, CategoryReporitoryImpl>();
             builder.Services.AddScoped<BookRepository, BookRepositoryImpl>();
+            builder.Services.AddScoped<CartRepository, CartRepositoryImpl>();
             builder.Services.AddScoped<CustomerRepository, CustomerRepositoryImpl>();
 
 
