@@ -24,9 +24,8 @@ namespace BookStore.repository.repositoryImpl
             b.price = book.price;
             b.amount = book.amount;
             b.categoryId = book.categoryId;
-            b.image = "https://cuongquach.com/wp-content/uploads/2019/12/lap-trinh-huong-doi-tuong-voi-java.jpg";
-            b.category = this.context.categories.FirstOrDefault(c => c.id == book.categoryId);
-
+            //b.image = "https://cuongquach.com/wp-content/uploads/2019/12/lap-trinh-huong-doi-tuong-voi-java.jpg";
+            b.image = book.image;
             this.context.books.Add(b);
             this.context.SaveChanges();
             return b;
@@ -41,20 +40,24 @@ namespace BookStore.repository.repositoryImpl
 
         public List<Book> GetAll()
         {
-            var bookList = this.context.books.Select(b => new Book
-            {
-                id = b.id,
-                name = b.name,
-                price = b.price,
-                amount = b.amount,
-                categoryId = b.categoryId,
-                description = b.description,
-                author = b.author,
-                image = b.image,
-                category = b.category
-        });
+            var bookList = this.context.books
+                .OrderByDescending(b => b.id)  // Sắp xếp giảm dần theo id
+                .Select(b => new Book
+                {
+                    id = b.id,
+                    name = b.name,
+                    price = b.price,
+                    amount = b.amount,
+                    categoryId = b.categoryId,
+                    description = b.description,
+                    author = b.author,
+                    image = b.image,
+                    category = b.category
+                });
+
             return bookList.ToList();
         }
+
 
         public Book getById(int id)
         {
@@ -101,6 +104,7 @@ namespace BookStore.repository.repositoryImpl
                 book.author = bookDTO.author;
                 book.price = bookDTO.price;
                 book.description = bookDTO.description;
+                // book.image = "https://images.nxbxaydung.com.vn/Picture/2020/biasach-0626100809.jpg";
                 book.image = bookDTO.image;
                 book.amount = bookDTO.amount;
                 book.categoryId = bookDTO.categoryId;

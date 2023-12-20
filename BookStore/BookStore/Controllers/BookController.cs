@@ -63,7 +63,7 @@
                 try
                 {
                     this.bookRepository.delete(id);
-                    return Ok();
+                    return Ok("Deleted successfull!");
                 }
                 catch (Exception ex)
                 {
@@ -78,7 +78,7 @@
                 try
                 {
                     this.bookRepository.update(id, bookDTO);
-                    return Ok();
+                    return Ok("Updated successfull!");
                 }
                 catch (Exception ex)
                 {
