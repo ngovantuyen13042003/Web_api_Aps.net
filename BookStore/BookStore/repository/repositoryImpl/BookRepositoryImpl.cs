@@ -1,6 +1,7 @@
 ﻿using BookStore.Data;
 using BookStore.dto;
 using BookStore.Model;
+using Microsoft.EntityFrameworkCore;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace BookStore.repository.repositoryImpl
@@ -82,8 +83,11 @@ namespace BookStore.repository.repositoryImpl
 
         public List<Book> Search(string search)
         {
-            var results = this.context.books.Where(b => b.name.Contains(search, StringComparison.OrdinalIgnoreCase) );
-            return results.ToList();
+            var results = this.context.books
+             .Where(b => EF.Functions.Like(b.name, $"%{search}%") || EF.Functions.Like(b.description, $"%{search}%"))
+             .ToList();
+
+            return results;
         }
 
     
