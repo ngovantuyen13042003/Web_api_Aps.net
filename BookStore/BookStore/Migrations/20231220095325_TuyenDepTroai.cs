@@ -5,7 +5,7 @@
 namespace BookStore.Migrations
 {
     /// <inheritdoc />
-    public partial class DBadd : Migration
+    public partial class TuyenDepTroai : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,9 @@ namespace BookStore.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     bookId = table.Column<int>(type: "int", nullable: false),
-                    customerId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    customerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    totalPrice = table.Column<double>(type: "float", nullable: false),
+                    totalQuantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
