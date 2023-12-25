@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231220022316_updateDB")]
-    partial class updateDB
+    [Migration("20231220095325_TuyenDepTroai")]
+    partial class TuyenDepTroai
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
