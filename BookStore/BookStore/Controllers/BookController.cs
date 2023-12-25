@@ -125,7 +125,23 @@ using BookStore.dto;
             }
             }
 
-
-            
+        [HttpGet("/search")]
+        public IActionResult timkiem(string keyword)
+        {
+            try
+            {
+                var books = this.bookRepository.Search(keyword);
+                return Ok(books);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
+
+
+
+
+
+    }
     }
