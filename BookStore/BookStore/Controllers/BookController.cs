@@ -1,4 +1,5 @@
-﻿    using BookStore.dto;
+﻿using BookStore.Data;
+using BookStore.dto;
     using BookStore.repository;
     using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,12 @@
         public class BookController : ControllerBase
         {
             private readonly BookRepository bookRepository;
-            public BookController(BookRepository b)
+
+            private readonly DataContext context;
+            public BookController(BookRepository b, DataContext context)
             {
                 this.bookRepository = b;
+            this.context = context;
             }
 
             [HttpGet("/books")]
@@ -106,7 +110,15 @@
             try
             {
                 var books = this.bookRepository.pagination(page, pagesize);
-                return Ok(books);
+                var size = this.context.books.Count();
+
+                var result = new
+                {
+                    book = books,
+                    size = size
+                };
+
+                return Ok(result);
             }catch
             {
                 return BadRequest();
