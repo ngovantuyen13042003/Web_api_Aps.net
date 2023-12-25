@@ -1,6 +1,7 @@
 ﻿using BookStore.Data;
 using BookStore.dto;
 using BookStore.Model;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace BookStore.repository.repositoryImpl
 {
@@ -79,6 +80,14 @@ namespace BookStore.repository.repositoryImpl
             return book.ToList();
         }
 
+        public List<Book> Search(string search)
+        {
+            var results = this.context.books.Where(b => b.name.Contains(search, StringComparison.OrdinalIgnoreCase) );
+            return results.ToList();
+        }
+
+    
+
         void BookRepository.delete(int id)
         {
             var book = this.context.books.SingleOrDefault(b => b.id == id);
@@ -90,10 +99,8 @@ namespace BookStore.repository.repositoryImpl
         }
 
 
-        List<Book> BookRepository.search(string search)
-        {
-            throw new NotImplementedException();
-        }
+    
+        
 
         void BookRepository.update(int id, BookDTO bookDTO)
         {

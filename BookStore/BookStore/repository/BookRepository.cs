@@ -1,5 +1,6 @@
 ﻿using BookStore.dto;
 using BookStore.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.repository
 {
@@ -7,7 +8,6 @@ namespace BookStore.repository
     {
         List<Book> GetAll();
 
-        List<Book> search(String search);
         Book getById(int id);
         Book add(BookDTO book);
         void update(int id, BookDTO book);
@@ -15,8 +15,8 @@ namespace BookStore.repository
 
         List<Book> findByCategory(int categoryId);
 
+        List<Book> Search(string search);
 
         List<Book> pagination(int page, int pagesize);
-
     }
 }
