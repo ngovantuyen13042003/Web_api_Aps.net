@@ -1,6 +1,7 @@
 ﻿using BookStore.Data;
 using BookStore.dto;
 using BookStore.Model;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace BookStore.repository.repositoryImpl
 {
@@ -92,7 +93,8 @@ namespace BookStore.repository.repositoryImpl
 
         List<Book> BookRepository.search(string search)
         {
-            throw new NotImplementedException();
+            var results = this.context.books.Where(b => b.name.Contains(search, StringComparison.OrdinalIgnoreCase) || b.description.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+            return results;
         }
 
         void BookRepository.update(int id, BookDTO bookDTO)
