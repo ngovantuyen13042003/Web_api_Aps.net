@@ -143,6 +143,22 @@ namespace BookStore.Migrations
                     b.ToTable("customer", (string)null);
                 });
 
+            modelBuilder.Entity("BookStore.Model.vote", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("star")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("vote");
+                });
+
             modelBuilder.Entity("BookStore.Model.Book", b =>
                 {
                     b.HasOne("BookStore.Model.Category", "category")

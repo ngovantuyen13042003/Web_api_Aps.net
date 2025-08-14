@@ -5,7 +5,7 @@
 namespace BookStore.Migrations
 {
     /// <inheritdoc />
-    public partial class TuyenDepTroai : Migration
+    public partial class InitWeb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

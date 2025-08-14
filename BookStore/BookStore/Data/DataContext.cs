@@ -13,6 +13,7 @@ namespace BookStore.Data
         public DbSet<Book> books { get; set; }
         public DbSet<Customer> customers { get; set; }
         public DbSet<Cart> carts { get; set; }
+        public DbSet<vote> vote { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

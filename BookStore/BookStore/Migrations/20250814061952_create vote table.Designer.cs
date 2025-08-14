@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231220095325_TuyenDepTroai")]
-    partial class TuyenDepTroai
+    [Migration("20250814061952_create vote table")]
+    partial class createvotetable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,6 +144,22 @@ namespace BookStore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("customer", (string)null);
+                });
+
+            modelBuilder.Entity("BookStore.Model.vote", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("star")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("vote");
                 });
 
             modelBuilder.Entity("BookStore.Model.Book", b =>
